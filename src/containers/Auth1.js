@@ -3,28 +3,55 @@ import React, { useState } from 'react';
 import * as Yup from 'yup'
 
 function Auth1(props) {
+    const [authtype, setauthtype] = useState('login');
+    
+    
+    let authObj = {}; let authVal ={};
 
-    let authSchema = Yup.object({
-        name: Yup.string().required('Please enter your name').matches(/^[a-zA-Z ]{1,30}$/,'Please enter only Char'),
-        email: Yup.string().email('Please enter valid email').required('Please enter your email'),
-        password: Yup.string().required('Please enter your password'),
-    });
-
-
-    const formik = useFormik({
-        validationSchema: authSchema,
-        initialValues: {
+    if (authtype === 'login') {
+        authObj = {
+            email: Yup.string().email('Please enter valid email').required('Please enter your email'),
+            password: Yup.string().required('Please enter your password').matches(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,'please enter strong password'),
+        }
+        authVal = {
+            email: '',
+            password: '',
+        }
+    } else if (authtype === 'signup') {
+        authObj = {
+            name: Yup.string().required('Please enter your name').matches(/^[A-Za-z ]*$/,'Please enter only Char'),
+            email: Yup.string().email('Please enter valid email').required('Please enter your email'),
+            password: Yup.string().required('Please enter your password').matches(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,'please enter strong password'),
+        }
+        authVal = {
             name: '',
             email: '',
             password: '',
-        },
-        onSubmit: values => {
+        }
+    } else {
+        authObj = {
+            email: Yup.string().email('Please enter valid email').required('Please enter your email'),
+        }
+        authVal = {
+            email: '',
+        }
+    }
+
+
+    let authSchema = Yup.object(authObj);
+
+    const formik = useFormik({
+        validationSchema: authSchema,
+        initialValues: authVal,
+        enableReinitialize: true,
+        onSubmit: (values, action)=> {
+            action.resetForm();
             console.log(values);
         },
     });
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
-    const [authtype, setauthtype] = useState('login');
+
 
     // console.log(errors);
     return (

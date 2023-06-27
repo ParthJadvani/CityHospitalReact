@@ -16,6 +16,8 @@ import NotFound from './components/NotFound';
 import Auth from './containers/Auth';
 import Auth1 from './containers/Auth1';
 import Contact1 from './containers/Contact1';
+import FullForm from './containers/FullForm';
+import Muidr from './components/MuiDrawer';
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
         <Route path='/About' element={<About />} />
         {/* <Route path='/Contact' element={<Contact />} /> */}
         <Route path='/Contact' element={<Contact1 />} />
+        <Route path='/Fullform' element={<FullForm />} />
         <Route path='/Appointment' element={<Appointment />} />
         {/* <Route path='/Doctordescrip/:id' element={<Docdescription/>}/>      
         <Route path='/Doctordescrip/Visiting' element={<VisitingDoctor/>}/>       */}
@@ -40,6 +43,7 @@ function App() {
         <Route path='*' element={<NotFound />} />
         {/* <Route path='/Auth' element={<Auth />} /> */}
         <Route path='/Auth1' element={<Auth1 />} />
+        <Route path='/Muidr' element={<Muidr/>} />
       </Routes>
       <Footer />
     </>
