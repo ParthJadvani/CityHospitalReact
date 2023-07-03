@@ -13,6 +13,8 @@ import Auth1 from '../User/containers/Auth1';
 import Contact1 from '../User/containers/Contact1';
 import FullForm from '../User/containers/FullForm';
 import { Route, Routes } from 'react-router-dom';
+import Medicine from '../User/containers/Medicine/Medicine';
+
 
 function UserRoutes(props) {
     return (
@@ -26,6 +28,7 @@ function UserRoutes(props) {
                 <Route path='/Contact1' element={<Contact1 />} />
                 <Route path='/Fullform' element={<FullForm />} />
                 <Route path='/Appointment' element={<Appointment />} />
+                <Route path='/Medicine' element={<Medicine />} />
 
                 <Route path='/Doctordescrip/'>
                     <Route path=':id' element={<Docdescription />} />

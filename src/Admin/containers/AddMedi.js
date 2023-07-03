@@ -16,6 +16,9 @@ import IconButton from '@mui/material/IconButton';
 export default function AddMedi() {
   const [open, setOpen] = React.useState(false);
   const [locData, setlocData] = React.useState([]);
+  // const [Update, setUpdate] = React.useState(false);
+
+
 
   const handleadd = (data) => {
 
@@ -37,9 +40,17 @@ export default function AddMedi() {
     handleClose();
   }
 
-  const handleEdit = () => {
-    
+  const handleEdit = (data) => {
+    // console.log(data);
+    setValues(data);
+    setOpen(true);
+    // setUpdate(true);
+    // setFieldValue(data);
   }
+
+  // const handleupdate = (data) => {
+  //   setFieldValue(data)
+  // }
 
   const handleDelete = (id) => {
     let localData = JSON.parse(localStorage.getItem("medicine"));
@@ -67,11 +78,11 @@ export default function AddMedi() {
       field: 'action',
       headerName: 'Action',
       sortable: false,
-      width: 200,
+      width: 130,
       renderCell: (params) => (
         <>
-          <IconButton aria-label="delete" onClick={() => handleEdit(params.row.id)}>
-            <DeleteIcon />
+          <IconButton aria-label="delete" onClick={() => handleEdit(params.row)}>
+            <EditIcon />
           </IconButton>
           <IconButton aria-label="delete" onClick={() => handleDelete(params.row.id)}>
             <DeleteIcon />
@@ -109,14 +120,18 @@ export default function AddMedi() {
       desc: '',
     },
     onSubmit: (values, action) => {
-      handleadd(values);
+      // handleadd(values);
+      // if (Update) {
+      //   handleupdate(values);
+      // } else {
+        handleadd(values);
+      // }
 
       action.resetForm();
-      // alert(JSON.stringify(values, null, 2));
     },
   });
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit, setValues, setFieldValue } = formik;
   // console.log(errors);
 
   const handleClickOpen = () => {
