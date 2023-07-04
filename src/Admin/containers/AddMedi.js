@@ -16,11 +16,11 @@ import IconButton from '@mui/material/IconButton';
 export default function AddMedi() {
   const [open, setOpen] = React.useState(false);
   const [locData, setlocData] = React.useState([]);
-  // const [Update, setUpdate] = React.useState(false);
+  const [Update, setUpdate] = React.useState(null);
 
 
 
-  const handleadd = (data) => {
+  const handleSubmitdata = (data) => {
 
     let localdata = JSON.parse(localStorage.getItem('medicine'));
 
@@ -32,25 +32,33 @@ export default function AddMedi() {
       localStorage.setItem('medicine', JSON.stringify([NewData]));
       setlocData([NewData]);
     } else {
-      localdata.push(NewData);
-      localStorage.setItem('medicine', JSON.stringify(localdata));
-      setlocData(localdata);
+      if (Update) {
+        let udata = localdata.map((v) => {
+          if (v.id == data.id) {
+            return data;
+          } else {
+            return v;
+          }
+        })
+        localStorage.setItem('medicine', JSON.stringify(udata));
+        setlocData(udata);
+      } else {
+        localdata.push(NewData);
+        localStorage.setItem('medicine', JSON.stringify(localdata));
+        setlocData(localdata);
+      }
+
     }
 
     handleClose();
+    setUpdate(null);
   }
 
   const handleEdit = (data) => {
-    // console.log(data);
     setValues(data);
     setOpen(true);
-    // setUpdate(true);
-    // setFieldValue(data);
+    setUpdate(data);
   }
-
-  // const handleupdate = (data) => {
-  //   setFieldValue(data)
-  // }
 
   const handleDelete = (id) => {
     let localData = JSON.parse(localStorage.getItem("medicine"));
@@ -120,13 +128,8 @@ export default function AddMedi() {
       desc: '',
     },
     onSubmit: (values, action) => {
-      // handleadd(values);
-      // if (Update) {
-      //   handleupdate(values);
-      // } else {
-        handleadd(values);
-      // }
 
+      handleSubmitdata(values);
       action.resetForm();
     },
   });
