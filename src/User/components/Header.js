@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CustomButton from './UI/CustomButton';
 
 function Header(props) {
+    let localdata = localStorage.getItem('loginstatus');
+
+    const handlelogout = () => {
+        localStorage.removeItem('loginstatus');
+    }
     return (
         <div className="main-header">
             <div id="topbar" className="d-flex align-items-center fixed-top">
@@ -38,11 +44,19 @@ function Header(props) {
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>
-                    <Link to="/Appointment" className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an</span>
-                        Appointment</Link>
-                    <Link to="/Auth1" className="appointment-btn scrollto">
-                        <span className="d-none d-md-inline">Login/ Signup</span>
-                    </Link>
+                    <Link to="/Appointment"><CustomButton val={'Make Appointment'}/></Link>
+
+                    {
+                        localdata ? <Link to="/Auth1" onClick={handlelogout}>
+                            <CustomButton val={'Logout'}/>
+                        </Link>
+                            : <Link to="/Auth1" >
+                                {/* <span className="d-none d-md-inline">Login/ Signup</span> */}
+                                <CustomButton val={'Login/Signup'}/>
+                            </Link>
+                            // : <CustomButton val={'login'}/>
+                    }
+                    
                 </div>
             </header>
         </div>

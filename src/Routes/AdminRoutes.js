@@ -4,11 +4,13 @@ import AddDoctor from '../Admin/containers/AddDoctor';
 import AddMedicine from '../Admin/containers/Medicine/AddMedi';
 import AddAppointment from '../Admin/containers/AddAppointment';
 import { Route, Routes } from 'react-router-dom';
+import Dashboard from '../Admin/containers/Dashboard';
 
 function AdminRoutes(props) {
     return (
         <LayoutMUI>
             <Routes>
+                <Route path='/' element={<Dashboard />} />
                 <Route path='/doctor' element={<AddDoctor />} />
                 <Route path='/medicine' element={<AddMedicine />} />
                 <Route path='/appointment' element={<AddAppointment />} />

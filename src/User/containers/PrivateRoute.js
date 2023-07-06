@@ -2,9 +2,9 @@ import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 function PrivateRoute() {
-    let log = {'isAuthenticate' : false}
+    let localdata = localStorage.getItem('loginstatus');
     return (
-        log.isAuthenticate ? <Outlet/> : <Navigate to="/Auth1"/>
+        localdata ? <Outlet/> : <Navigate to="/Auth1" replace/>
     );
 }
 

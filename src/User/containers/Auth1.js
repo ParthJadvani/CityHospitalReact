@@ -1,9 +1,13 @@
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup'
+import CustomButton from '../components/UI/CustomButton';
 
 function Auth1(props) {
     const [authtype, setauthtype] = useState('login');
+    let navigate = useNavigate();
+    
     
     let authObj = {}; let authVal = {};
 
@@ -36,6 +40,16 @@ function Auth1(props) {
         }
     }
 
+    const handlelogin = () => {
+        localStorage.setItem("loginstatus", 'true');
+        navigate('/');
+    }
+    const handleSignup = () => {
+
+    }
+    const handleforget = () => {
+
+    }
 
     let authSchema = Yup.object(authObj);
 
@@ -45,7 +59,14 @@ function Auth1(props) {
         enableReinitialize: true,
         onSubmit: (values, action)=> {
             action.resetForm();
-            console.log(values);
+
+            if (authtype === 'login') {
+                handlelogin();
+            } else if (authtype === 'login') {
+                handleSignup();
+            } else if (authtype === 'forget') {
+                handleforget();
+            }
         },
     });
 
@@ -115,10 +136,15 @@ function Auth1(props) {
                             }
                         </div>
                     </div>
-                    {
+                    {/* {
                         authtype === 'login' ? <div className="text-center"><button type="submit">Login</button></div>
                             : authtype === 'signup' ? <div className="text-center"><button type="submit">Signup</button></div>
                                 : <div className="text-center"><button type="submit">Send OTP</button></div>
+                    } */}
+                    {
+                        authtype === 'login' ? <div className="text-center"><CustomButton val={'Login'}/></div>
+                            : authtype === 'signup' ? <div className="text-center"><CustomButton val={'Signup'}/></div>
+                                : <div className="text-center"><CustomButton val={'Send OTP'}/></div>
                     }
                     <div className="text-center m-2">
                         {

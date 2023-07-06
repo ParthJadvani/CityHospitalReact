@@ -1,4 +1,5 @@
 import React from 'react';
+import CustomButton from '../components/UI/CustomButton';
 
 function Appointment(props) {
     return (
@@ -49,7 +50,8 @@ function Appointment(props) {
                         <div className="error-message" />
                         <div className="sent-message">Your appointment request has been sent successfully. Thank you!</div>
                     </div>
-                    <div className="text-center"><button type="submit">Make an Appointment</button></div>
+                    <div className="text-center"><CustomButton val={'Make an Appointment'}/></div>
+                    {/* <div className="text-center"><button type="submit">Make an Appointment</button></div> */}
                 </form>
             </div>
         </section>

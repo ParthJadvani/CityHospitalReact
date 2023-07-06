@@ -32,7 +32,7 @@ function UserRoutes(props) {
                 <Route path='/Appointment' element={<Appointment />} />
 
                 <Route element={<PrivateRoute />}>
-                <Route path='/Medicine' element={<Medicine />} />
+                    <Route path='/Medicine' element={<Medicine />} />
                 </Route>
 
                 <Route path='/Doctordescrip/'>
@@ -41,8 +41,7 @@ function UserRoutes(props) {
                 </Route>
 
                 <Route path='*' element={<NotFound />} />
-                
-                    <Route path='/Auth1' element={<Auth1 />} />
+                <Route path='/Auth1' element={<Auth1 />} />
             </Routes>
             <Footer />
         </>
