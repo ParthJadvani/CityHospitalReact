@@ -1,7 +1,7 @@
 import React from 'react';
 import LayoutMUI from '../Admin/components/LayoutMUI';
 import AddDoctor from '../Admin/containers/AddDoctor';
-import AddMedicine from '../Admin/containers/AddMedi';
+import AddMedicine from '../Admin/containers/Medicine/AddMedi';
 import AddAppointment from '../Admin/containers/AddAppointment';
 import { Route, Routes } from 'react-router-dom';
 

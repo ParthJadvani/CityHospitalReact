@@ -5,7 +5,6 @@ import * as Yup from 'yup'
 function Auth1(props) {
     const [authtype, setauthtype] = useState('login');
     
-    
     let authObj = {}; let authVal = {};
 
     if (authtype === 'login') {

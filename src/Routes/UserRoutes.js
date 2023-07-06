@@ -14,6 +14,7 @@ import Contact1 from '../User/containers/Contact1';
 import FullForm from '../User/containers/FullForm';
 import { Route, Routes } from 'react-router-dom';
 import Medicine from '../User/containers/Medicine/Medicine';
+import PrivateRoute from '../User/containers/PrivateRoute';
 
 
 function UserRoutes(props) {
@@ -21,6 +22,7 @@ function UserRoutes(props) {
         <>
             <Header />
             <Routes>
+
                 <Route path='/' element={<Home />} />
                 <Route path='/Departments' element={<Departments />} />
                 <Route path='/Doctors' element={<Doctors />} />
@@ -28,7 +30,10 @@ function UserRoutes(props) {
                 <Route path='/Contact1' element={<Contact1 />} />
                 <Route path='/Fullform' element={<FullForm />} />
                 <Route path='/Appointment' element={<Appointment />} />
+
+                <Route element={<PrivateRoute />}>
                 <Route path='/Medicine' element={<Medicine />} />
+                </Route>
 
                 <Route path='/Doctordescrip/'>
                     <Route path=':id' element={<Docdescription />} />
@@ -36,7 +41,8 @@ function UserRoutes(props) {
                 </Route>
 
                 <Route path='*' element={<NotFound />} />
-                <Route path='/Auth1' element={<Auth1 />} />
+                
+                    <Route path='/Auth1' element={<Auth1 />} />
             </Routes>
             <Footer />
         </>
