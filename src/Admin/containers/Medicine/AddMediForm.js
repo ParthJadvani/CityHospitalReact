@@ -63,7 +63,7 @@ function AddMediForm({ onhandleSubmitdata, onUpdate}) {
         },
     });
 
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit, setValues, setFieldValue } = formik;
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit, setValues } = formik;
     return (
         <>
             <Button variant="outlined" onClick={handleClickOpen}>

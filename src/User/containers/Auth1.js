@@ -2,7 +2,8 @@ import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup'
-import CustomButton from '../components/UI/CustomButton';
+import Button from '../components/UI/Button/Button';
+import Input from '../components/UI/Input/Input';
 
 function Auth1(props) {
     const [authtype, setauthtype] = useState('login');
@@ -89,7 +90,7 @@ function Auth1(props) {
                             authtype === 'login' || authtype === 'forget' ? null :
                                 
                                     <div className="col-md-7 form-group">
-                                        <input type="text"
+                                        <Input type="text"
                                             name="name"
                                             className="form-control"
                                             id="name"
@@ -103,7 +104,7 @@ function Auth1(props) {
                                     </div>   
                         }
                             <div className="col-md-7 form-group mt-3 mt-md-0">
-                                <input type="email"
+                                <Input type="email"
                                     className="form-control"
                                     name="email" id="email"
                                     value={values.email}
@@ -116,7 +117,7 @@ function Auth1(props) {
                             </div>
                         {
                             authtype !== 'forget' ?  <div className="col-md-7 form-group mt-3 mt-md-0">
-                                <input type="password"
+                                <Input type="password"
                                     className="form-control"
                                     name="password"
                                     id="password"
@@ -142,9 +143,9 @@ function Auth1(props) {
                                 : <div className="text-center"><button type="submit">Send OTP</button></div>
                     } */}
                     {
-                        authtype === 'login' ? <div className="text-center"><CustomButton val={'Login'}/></div>
-                            : authtype === 'signup' ? <div className="text-center"><CustomButton val={'Signup'}/></div>
-                                : <div className="text-center"><CustomButton val={'Send OTP'}/></div>
+                        authtype === 'login' ? <div className="text-center"><Button type='primary'>Login</Button></div>
+                            : authtype === 'signup' ? <div className="text-center"><Button type='secondry'>Signup</Button></div>
+                                : <div className="text-center"><Button type='outline'>Send OTP</Button></div>
                     }
                     <div className="text-center m-2">
                         {
