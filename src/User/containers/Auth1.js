@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup'
 import Button from '../components/UI/Button/Button';
 import Input from '../components/UI/Input/Input';
+import Heading from '../components/UI/Heading/Heading';
 
 function Auth1(props) {
     const [authtype, setauthtype] = useState('login');
@@ -80,8 +81,8 @@ function Auth1(props) {
             <div className="container">
                 <div className="section-title">
                     {
-                        authtype === 'login' ? <h2>Login</h2>
-                            : authtype === 'signup' ? <h2>Signup</h2> : <h2>Reset Password</h2>
+                        authtype === 'login' ? <Heading type='h2'>Login</Heading>
+                            : authtype === 'signup' ? <Heading type='h2'>Signup</Heading> : <Heading type='h2'>Reset Password</Heading>
                     }
                 </div>
                 <form action method="post" role="form" className="php-email-form" onSubmit={handleSubmit}>
@@ -98,9 +99,9 @@ function Auth1(props) {
                                             onBlur={handleBlur}
                                             onChange={handleChange}
                                             placeholder="Your Name"
+                                            errors={errors.name && touched.name ? errors.name : ''}
                                         />
                                         <div className="validate" />
-                                        <span className='err'>{errors.name && touched.name ? errors.name : ''}</span>
                                     </div>   
                         }
                             <div className="col-md-7 form-group mt-3 mt-md-0">
@@ -111,9 +112,9 @@ function Auth1(props) {
                                     onBlur={handleBlur}
                                     onChange={handleChange}
                                     placeholder="Your Email"
+                                    errors={errors.email && touched.email ? errors.email : ''}
                                 />
                                 <div className="validate" />
-                                <span className='err'>{errors.email && touched.email ? errors.email : ''}</span>
                             </div>
                         {
                             authtype !== 'forget' ?  <div className="col-md-7 form-group mt-3 mt-md-0">
@@ -125,9 +126,9 @@ function Auth1(props) {
                                     onBlur={handleBlur}
                                     onChange={handleChange}
                                     placeholder="Your Password"
+                                    errors={errors.password && touched.password ? errors.password : ''}
                                 />
                                 <div className="validate" />
-                                <span className='err'>{errors.password && touched.password ? errors.password : ''}</span>
                             </div> : null
                         }
                         <div className="text-center m-2">

@@ -1,16 +1,17 @@
 import React from 'react';
-import { Baseinput } from './input.style';
+import { Baseinput, InputErr } from './input.style';
 
-function Input({ type, name, value, onBlur, onChange, placeholder }) {
+function Input({ errors, ...rest }) {
     return (
+        <>
         <Baseinput
-        type={type} 
-        name={name}
-        value={value}
-        onBlur={onBlur}
-        onChange={onChange}
-        placeholder={placeholder}
+        className="form-control"
+        {...rest}
+        errors={errors}
         />
+
+        <InputErr errors={errors}>{errors}</InputErr>
+        </>
     );
 }
 

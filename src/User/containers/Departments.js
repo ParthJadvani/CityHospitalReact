@@ -1,11 +1,12 @@
 import React from 'react';
+import Heading from '../components/UI/Heading/Heading';
 
 function About(props) {
     return (
         <section id="departments" className="departments">
             <div className="container">
                 <div className="section-title">
-                    <h2>Departments</h2>
+                    <Heading type='h2'>Departments</Heading>
                 </div>
                 <div className="row">
                     <div className="col-lg-3">
