@@ -15,9 +15,13 @@ import FullForm from '../User/containers/FullForm';
 import { Route, Routes } from 'react-router-dom';
 import Medicine from '../User/containers/Medicine/Medicine';
 import PrivateRoute from '../User/containers/PrivateRoute';
+import { Provider } from 'react-redux';
+import { configStore } from '../Redux/Store';
+import Counter from '../User/containers/Counter/Counter';
 
 
 function UserRoutes(props) {
+    // const store = configStore();
     return (
         <>
             <Header />
@@ -30,6 +34,7 @@ function UserRoutes(props) {
                 <Route path='/Contact1' element={<Contact1 />} />
                 <Route path='/Fullform' element={<FullForm />} />
                 <Route path='/Appointment' element={<Appointment />} />
+                <Route path='/Counter' element={<Counter />} />
 
                 <Route element={<PrivateRoute />}>
                     <Route path='/Medicine' element={<Medicine />} />

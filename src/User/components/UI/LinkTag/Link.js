@@ -1,10 +1,11 @@
 import React from 'react';
+import { BaseLink } from './link.style';
 
-function Link(props) {
+function Link({ children, className }) {
     return (
-        <div>
-            
-        </div>
+        <BaseLink href='#' className={className}>
+            {children}
+        </BaseLink>
     );
 }
 
