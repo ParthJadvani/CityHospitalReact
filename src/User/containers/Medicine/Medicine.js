@@ -1,24 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import ListMedicine from './ListMedicine';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMedicine } from '../../../Redux/Action/medicine.action';
+import { addToCart } from '../../../Redux/Action/cart.action';
 
 function Medicine(props) {
-    const [Data, setData] = useState([]);
+    // const [Data, setData] = useState([]);
     const [filterdata, setFilterdata] = useState([]);
 
+    const dispatch = useDispatch();
+    const mdata = useSelector(state => state.medicine);
 
     useEffect(() => {
-        let localdata = JSON.parse(localStorage.getItem('medicine'));
-
-        if (localdata) {
-            setData(localdata);
-        }
+        dispatch(getMedicine());
     }, []);
+
+    // useEffect(() => {
+    //     let localdata = JSON.parse(localStorage.getItem('medicine'));
+
+    //     if (localdata) {
+    //         setData(localdata);
+    //     }
+    // }, []);
 
     const handlechange = (val) =>{
         
-        let localdata = JSON.parse(localStorage.getItem('medicine'));
+        // let localdata = JSON.parse(localStorage.getItem('medicine'));
 
-        let fdata = localdata.filter((v) => 
+        // let fmdata = mdata.medicine;
+
+        let fdata = mdata.medicine.filter((v) => 
                 v.name.toLowerCase().includes(val.toLowerCase()) ||
                 v.price.toString().includes(val) ||
                 v.date.toString().includes(val) ||
@@ -27,6 +38,11 @@ function Medicine(props) {
         console.log(fdata);
 
         setFilterdata(fdata);
+    }
+
+    const handleCart = (id) => {
+        dispatch(addToCart(id));
+        console.log("call cart", id);
     }
 
     return (
@@ -44,7 +60,10 @@ function Medicine(props) {
                         placeholder='search'
                         onChange={(e) => handlechange(e.target.value)}
                     />
-                    <ListMedicine mdata={filterdata.length > 0 ? filterdata : Data}/>
+                    <ListMedicine 
+                    mdata={filterdata.length > 0 ? filterdata : mdata.medicine}
+                    handleCart={handleCart}
+                    />
                 </div>
             </div>
         </section>

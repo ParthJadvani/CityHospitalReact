@@ -5,7 +5,7 @@ export const getDoctordata = () => (dispatch) => {
         dispatch(loadingDoctor(true));
 
         setTimeout(function(){
-            fetch("http://localhost:3004/doctorss")
+            fetch("http://localhost:3004/doctors")
             // .then((response) => response.json())
             .then((response) => {
                 if (response.ok) {

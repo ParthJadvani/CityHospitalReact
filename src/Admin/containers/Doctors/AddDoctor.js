@@ -30,7 +30,6 @@ export default function AddDoctor() {
 
   const handleEdit = (data) => {
     setUpdate(data);
-
   }
 
   const handleDelete = (id) => {
