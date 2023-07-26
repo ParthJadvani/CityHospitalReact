@@ -18,6 +18,7 @@ import PrivateRoute from '../User/containers/PrivateRoute';
 import { Provider } from 'react-redux';
 import { configStore } from '../Redux/Store';
 import Counter from '../User/containers/Counter/Counter';
+import Cart from '../User/containers/Cart/Cart';
 
 
 function UserRoutes(props) {
@@ -35,6 +36,7 @@ function UserRoutes(props) {
                 <Route path='/Fullform' element={<FullForm />} />
                 <Route path='/Appointment' element={<Appointment />} />
                 <Route path='/Counter' element={<Counter />} />
+                <Route path='/cart' element={<Cart />} />
 
                 <Route element={<PrivateRoute />}>
                     <Route path='/Medicine' element={<Medicine />} />

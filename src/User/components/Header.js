@@ -1,13 +1,37 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CustomButton from './UI/CustomButton';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Badge from '@mui/material/Badge';
+import { useSelector } from 'react-redux';
 
 function Header(props) {
     let localdata = localStorage.getItem('loginstatus');
 
+    let CartData = useSelector((state) => state.cart);
+
+    let CartCount = 0;
+    if (CartData.items) {
+        CartCount = CartData.items.reduce((acc, v, i) => acc + v.qty, 0);
+    }
+
+    console.log(CartData);
+
     const handlelogout = () => {
         localStorage.removeItem('loginstatus');
     }
+
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+            right: -3,
+            top: 13,
+            border: `2px solid ${theme.palette.background.paper}`,
+            padding: '0 4px',
+        },
+    }));
+
     return (
         <div className="main-header">
             <div id="topbar" className="d-flex align-items-center fixed-top">
@@ -21,6 +45,15 @@ function Header(props) {
                         <a href="#" className="facebook"><i className="bi bi-facebook" /></a>
                         <a href="#" className="instagram"><i className="bi bi-instagram" /></a>
                         <a href="#" className="linkedin"><i className="bi bi-linkedin" /></a>
+                        <div>
+                            <Link to={"/cart"}>
+                                <IconButton aria-label="cart">
+                                    <StyledBadge badgeContent={CartCount} color="secondary">
+                                        <ShoppingCartIcon />
+                                    </StyledBadge>
+                                </IconButton>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -45,19 +78,19 @@ function Header(props) {
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>
-                    <Link to="/Appointment"><CustomButton val={'Make Appointment'}/></Link>
+                    <Link to="/Appointment"><CustomButton val={'Make Appointment'} /></Link>
 
                     {
                         localdata ? <Link to="/Auth1" onClick={handlelogout}>
-                            <CustomButton val={'Logout'}/>
+                            <CustomButton val={'Logout'} />
                         </Link>
                             : <Link to="/Auth1" >
                                 {/* <span className="d-none d-md-inline">Login/ Signup</span> */}
-                                <CustomButton val={'Login/Signup'}/>
+                                <CustomButton val={'Login/Signup'} />
                             </Link>
-                            // : <CustomButton val={'login'}/>
+                        // : <CustomButton val={'login'}/>
                     }
-                    
+
                 </div>
             </header>
         </div>
