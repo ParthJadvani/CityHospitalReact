@@ -11,7 +11,7 @@ function Cart(props) {
     console.log(medicineData);
     console.log(cartData);
 
-    let subTotal = 0;
+    // let subTotal = 0;
     let cartItems = cartData.items.map((v) => {
         let mdata = medicineData.medicine.find((m) => m.id === v.pid);
 
@@ -24,6 +24,7 @@ function Cart(props) {
 
     
     // let subTotal = cartItems.map((v) => v.price * v.qty).reduce((acc, v) => acc + v.price,0);
+    let subTotal = cartItems.reduce((acc, v) => acc + v.price * v.qty, 0);
 
     const handleInc = (id) => {
         // console.log(id);

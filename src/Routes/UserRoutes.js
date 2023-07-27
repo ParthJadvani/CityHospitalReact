@@ -19,6 +19,7 @@ import { Provider } from 'react-redux';
 import { configStore } from '../Redux/Store';
 import Counter from '../User/containers/Counter/Counter';
 import Cart from '../User/containers/Cart/Cart';
+import Medicine1 from '../User/containers/Medicine/Medicine1';
 
 
 function UserRoutes(props) {
@@ -39,7 +40,8 @@ function UserRoutes(props) {
                 <Route path='/cart' element={<Cart />} />
 
                 <Route element={<PrivateRoute />}>
-                    <Route path='/Medicine' element={<Medicine />} />
+                    {/* <Route path='/Medicine' element={<Medicine />} /> */}
+                    <Route path='/Medicine' element={<Medicine1 />} />
                 </Route>
 
                 <Route path='/Doctordescrip/'>
