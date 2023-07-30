@@ -3,6 +3,8 @@ import ListMedicine from './ListMedicine';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMedicine } from '../../../Redux/Action/medicine.action';
 import { addToCart } from '../../../Redux/Action/cart.action';
+import { addToFav } from '../../../Redux/Action/fav.action';
+
 
 function Medicine(props) {
     // const [Data, setData] = useState([]);
@@ -45,6 +47,11 @@ function Medicine(props) {
         console.log("call cart", id);
     }
 
+    const favItem = (id) => {
+        dispatch(addToFav(id));
+        // console.log(id);
+    }
+
     return (
         <section id="medicine" className="medicine">
             <div className="container">
@@ -63,6 +70,7 @@ function Medicine(props) {
                     <ListMedicine 
                     mdata={filterdata.length > 0 ? filterdata : mdata.medicine}
                     handleCart={handleCart}
+                    favItem={favItem}
                     />
                 </div>
             </div>

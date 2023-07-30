@@ -6,18 +6,18 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
 import { useSelector } from 'react-redux';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { red } from '@mui/material/colors';
 
 function Header(props) {
     let localdata = localStorage.getItem('loginstatus');
-
-    let CartData = useSelector((state) => state.cart);
+    // let cardData = JSON.parse(localStorage.getItem("CardId"));
+    let cartData = useSelector((state) => state.cart);
 
     let CartCount = 0;
-    if (CartData.items) {
-        CartCount = CartData.items.reduce((acc, v, i) => acc + v.qty, 0);
+    if (cartData) {
+        CartCount = cartData.items.reduce((acc, v, i) => acc + v.qty, 0);
     }
-
-    console.log(CartData);
 
     const handlelogout = () => {
         localStorage.removeItem('loginstatus');
@@ -50,6 +50,13 @@ function Header(props) {
                                 <IconButton aria-label="cart">
                                     <StyledBadge badgeContent={CartCount} color="secondary">
                                         <ShoppingCartIcon />
+                                    </StyledBadge>
+                                </IconButton>
+                            </Link>
+                            <Link to={"/favourite"}>
+                                <IconButton aria-label="favourite">
+                                    <StyledBadge>
+                                        <FavoriteIcon sx={{ color: red[500] }} />
                                     </StyledBadge>
                                 </IconButton>
                             </Link>

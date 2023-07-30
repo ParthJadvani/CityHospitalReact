@@ -1,7 +1,7 @@
 import React from 'react';
 import CustomCard from '../../components/UI/CustomCard';
 
-function ListMedicine({ mdata, handleCart }) {
+function ListMedicine({ mdata, handleCart, favItem }) {
     return (
         <>
             {
@@ -12,6 +12,7 @@ function ListMedicine({ mdata, handleCart }) {
                             value={v} 
                             btnVal={"Add to Cart"}
                             handleCart={handleCart}
+                            favItem={favItem}
                             />
                         </div>
                     )

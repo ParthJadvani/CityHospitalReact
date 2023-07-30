@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../User/components/Header';
 import Footer from '../User/components/Footer';
 import Home from '../User/containers/Home';
@@ -20,10 +20,12 @@ import { configStore } from '../Redux/Store';
 import Counter from '../User/containers/Counter/Counter';
 import Cart from '../User/containers/Cart/Cart';
 import Medicine1 from '../User/containers/Medicine/Medicine1';
+import Cat1 from '../User/containers/Cart/Cat1';
+import Favourite from '../User/containers/Favourite/Favourite';
 
 
 function UserRoutes(props) {
-    // const store = configStore();
+
     return (
         <>
             <Header />
@@ -38,10 +40,12 @@ function UserRoutes(props) {
                 <Route path='/Appointment' element={<Appointment />} />
                 <Route path='/Counter' element={<Counter />} />
                 <Route path='/cart' element={<Cart />} />
+                {/* <Route path='/cart' element={<Cat1 />} /> */}
+                <Route path='/favourite' element={<Favourite/>}/>
 
                 <Route element={<PrivateRoute />}>
-                    {/* <Route path='/Medicine' element={<Medicine />} /> */}
-                    <Route path='/Medicine' element={<Medicine1 />} />
+                    <Route path='/Medicine' element={<Medicine />} />
+                    {/* <Route path='/Medicine' element={<Medicine1/>} /> */}
                 </Route>
 
                 <Route path='/Doctordescrip/'>
