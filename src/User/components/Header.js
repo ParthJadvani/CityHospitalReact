@@ -16,7 +16,7 @@ function Header(props) {
 
     let CartCount = 0;
     if (cartData) {
-        CartCount = cartData.items.reduce((acc, v, i) => acc + v.qty, 0);
+        // CartCount = cartData.items.reduce((acc, v, i) => acc + v.qty, 0);
     }
 
     const handlelogout = () => {
@@ -86,7 +86,6 @@ function Header(props) {
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>
                     <Link to="/Appointment"><CustomButton val={'Make Appointment'} /></Link>
-
                     {
                         localdata ? <Link to="/Auth1" onClick={handlelogout}>
                             <CustomButton val={'Logout'} />
@@ -97,7 +96,6 @@ function Header(props) {
                             </Link>
                         // : <CustomButton val={'login'}/>
                     }
-
                 </div>
             </header>
         </div>
