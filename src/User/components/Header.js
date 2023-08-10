@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import CustomButton from './UI/CustomButton';
 import { styled } from '@mui/material/styles';
@@ -8,11 +8,15 @@ import Badge from '@mui/material/Badge';
 import { useSelector } from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { red } from '@mui/material/colors';
+import { ThemeContext } from '../../Context/ThemeContext';
 
 function Header(props) {
     let localdata = localStorage.getItem('loginstatus');
     // let cardData = JSON.parse(localStorage.getItem("CardId"));
     let cartData = useSelector((state) => state.cart);
+
+    let theme = useContext(ThemeContext);
+    console.log(theme);
 
     let CartCount = 0;
     if (cartData) {
@@ -34,7 +38,7 @@ function Header(props) {
 
     return (
         <div className="main-header">
-            <div id="topbar" className="d-flex align-items-center fixed-top">
+            <div id="topbar" className={`d-flex align-items-center fixed-top ${theme.theme}`}>
                 <div className="container d-flex justify-content-between">
                     <div className="contact-info d-flex align-items-center">
                         <i className="bi bi-envelope" /> <a href="mailto:contact@example.com">cityhospital@example.com</a>
@@ -60,6 +64,8 @@ function Header(props) {
                                     </StyledBadge>
                                 </IconButton>
                             </Link>
+
+                            <button onClick={() => theme.themeToggle(theme.theme)}>Theme</button>
                         </div>
                     </div>
                 </div>

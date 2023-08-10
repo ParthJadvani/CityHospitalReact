@@ -5,18 +5,23 @@ import * as Yup from 'yup'
 import Button from '../components/UI/Button/Button';
 import Input from '../components/UI/Input/Input';
 import Heading from '../components/UI/Heading/Heading';
+import { auth } from '../../firebase';
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
+import { forgetRequest, loginRequest, signupRequest } from '../../Redux/Action/auth.action';
 
 function Auth1(props) {
     const [authtype, setauthtype] = useState('login');
     let navigate = useNavigate();
-    
-    
+
+    const dispatch = useDispatch();
+
     let authObj = {}; let authVal = {};
 
     if (authtype === 'login') {
         authObj = {
             email: Yup.string().email('Please enter valid email').required('Please enter your email'),
-            password: Yup.string().required('Please enter your password').matches(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,'please enter strong password'),
+            password: Yup.string().required('Please enter your password').matches(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/, 'please enter strong password'),
         }
         authVal = {
             email: '',
@@ -24,9 +29,9 @@ function Auth1(props) {
         }
     } else if (authtype === 'signup') {
         authObj = {
-            name: Yup.string().required('Please enter your name').matches(/^[A-Za-z ]*$/,'Please enter only Char'),
+            name: Yup.string().required('Please enter your name').matches(/^[A-Za-z ]*$/, 'Please enter only Char'),
             email: Yup.string().email('Please enter valid email').required('Please enter your email'),
-            password: Yup.string().required('Please enter your password').matches(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,'please enter strong password'),
+            password: Yup.string().required('Please enter your password').matches(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/, 'please enter strong password'),
         }
         authVal = {
             name: '',
@@ -42,15 +47,18 @@ function Auth1(props) {
         }
     }
 
-    const handlelogin = () => {
-        localStorage.setItem("loginstatus", 'true');
-        navigate('/');
-    }
-    const handleSignup = () => {
+    const handlelogin = (values) => {
 
+        dispatch(loginRequest(values));
     }
-    const handleforget = () => {
+    const handleSignup = (values) => {
+        // console.log(values);
+        dispatch(signupRequest(values));
+    }
+    const handleforget = (values) => {
 
+        dispatch(forgetRequest(values));
+        
     }
 
     let authSchema = Yup.object(authObj);
@@ -59,16 +67,16 @@ function Auth1(props) {
         validationSchema: authSchema,
         initialValues: authVal,
         enableReinitialize: true,
-        onSubmit: (values, action)=> {
-            action.resetForm();
+        onSubmit: (values, action) => {
 
             if (authtype === 'login') {
-                handlelogin();
-            } else if (authtype === 'login') {
-                handleSignup();
+                handlelogin(values);
+            } else if (authtype === 'signup') {
+                handleSignup(values);
             } else if (authtype === 'forget') {
-                handleforget();
+                handleforget(values);
             }
+            action.resetForm();
         },
     });
 
@@ -89,35 +97,35 @@ function Auth1(props) {
                     <div className="row justify-content-center ">
                         {
                             authtype === 'login' || authtype === 'forget' ? null :
-                                
-                                    <div className="col-md-7 form-group">
-                                        <Input type="text"
-                                            name="name"
-                                            className="form-control"
-                                            id="name"
-                                            value={values.name}
-                                            onBlur={handleBlur}
-                                            onChange={handleChange}
-                                            placeholder="Your Name"
-                                            errors={errors.name && touched.name ? errors.name : ''}
-                                        />
-                                        <div className="validate" />
-                                    </div>   
+
+                                <div className="col-md-7 form-group">
+                                    <Input type="text"
+                                        name="name"
+                                        className="form-control"
+                                        id="name"
+                                        value={values.name}
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        placeholder="Your Name"
+                                        errors={errors.name && touched.name ? errors.name : ''}
+                                    />
+                                    <div className="validate" />
+                                </div>
                         }
-                            <div className="col-md-7 form-group mt-3 mt-md-0">
-                                <Input type="email"
-                                    className="form-control"
-                                    name="email" id="email"
-                                    value={values.email}
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    placeholder="Your Email"
-                                    errors={errors.email && touched.email ? errors.email : ''}
-                                />
-                                <div className="validate" />
-                            </div>
+                        <div className="col-md-7 form-group mt-3 mt-md-0">
+                            <Input type="email"
+                                className="form-control"
+                                name="email" id="email"
+                                value={values.email}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                placeholder="Your Email"
+                                errors={errors.email && touched.email ? errors.email : ''}
+                            />
+                            <div className="validate" />
+                        </div>
                         {
-                            authtype !== 'forget' ?  <div className="col-md-7 form-group mt-3 mt-md-0">
+                            authtype !== 'forget' ? <div className="col-md-7 form-group mt-3 mt-md-0">
                                 <Input type="password"
                                     className="form-control"
                                     name="password"

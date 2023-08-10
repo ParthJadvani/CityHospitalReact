@@ -22,6 +22,7 @@ import Cart from '../User/containers/Cart/Cart';
 import Medicine1 from '../User/containers/Medicine/Medicine1';
 import Cat1 from '../User/containers/Cart/Cat1';
 import Favourite from '../User/containers/Favourite/Favourite';
+import Counter12 from '../User/containers/Counter/Counter12';
 
 
 function UserRoutes(props) {
