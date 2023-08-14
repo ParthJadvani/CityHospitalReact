@@ -7,7 +7,6 @@ const iniState = {
 }
 
 export const favReducer = (state = iniState, action) => {
-    console.log(action);
 
     switch(action.type) {
         case ActionType.ADD_TO_FAV:

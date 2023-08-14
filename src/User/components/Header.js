@@ -5,18 +5,21 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { red } from '@mui/material/colors';
 import { ThemeContext } from '../../Context/ThemeContext';
+import { logoutRequest } from '../../Redux/Action/auth.action';
 
 function Header(props) {
-    let localdata = localStorage.getItem('loginstatus');
+    // let localdata = localStorage.getItem('loginstatus');
     // let cardData = JSON.parse(localStorage.getItem("CardId"));
     let cartData = useSelector((state) => state.cart);
+    let auth = useSelector((state) => state.auth);
+    let dispatch = useDispatch();
 
     let theme = useContext(ThemeContext);
-    console.log(theme);
+    // console.log(theme);
 
     let CartCount = 0;
     if (cartData) {
@@ -24,7 +27,8 @@ function Header(props) {
     }
 
     const handlelogout = () => {
-        localStorage.removeItem('loginstatus');
+        // localStorage.removeItem('loginstatus');
+        dispatch(logoutRequest());
     }
 
     const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -93,14 +97,13 @@ function Header(props) {
                     </nav>
                     <Link to="/Appointment"><CustomButton val={'Make Appointment'} /></Link>
                     {
-                        localdata ? <Link to="/Auth1" onClick={handlelogout}>
-                            <CustomButton val={'Logout'} />
-                        </Link>
+                        auth.user ?
+                            <Link to="/Auth1" onClick={handlelogout}>
+                                <CustomButton val={'Logout'} />
+                            </Link>
                             : <Link to="/Auth1" >
-                                {/* <span className="d-none d-md-inline">Login/ Signup</span> */}
                                 <CustomButton val={'Login/Signup'} />
                             </Link>
-                        // : <CustomButton val={'login'}/>
                     }
                 </div>
             </header>

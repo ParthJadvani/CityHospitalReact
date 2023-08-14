@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 
 export const signupApi = (values) => {
@@ -17,7 +17,6 @@ export const signupApi = (values) => {
                             })
                             .catch((error) => {
                                 const errorCode = error.code;
-                                const errorMessage = error.message;
                                 reject({message: errorCode });
                             });
                     })
@@ -43,16 +42,13 @@ export const loginApi = (values) => {
                 // Signed in 
                 const user = userCredential.user;
                 if (user.emailVerified) {
-                    resolve({message: "You are successfully login"});
-                    // localStorage.setItem("loginstatus", 'true');
-                    // navigate('/');
+                    resolve({message: "You are successfully login", user: user});
                 } else {
                     reject({message: "Your Email is not Verified..."});
                 }
             })
             .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
                 reject({message: errorCode});
             });
     })
@@ -69,5 +65,15 @@ export const forgetApi = (values) => {
                 const errorMessage = error.message;
                 reject({message: errorCode});
             });
+    })
+}
+
+export const logoutApi = (values) => {
+    return new Promise((resolve, reject) => {
+        signOut(auth).then(() => {
+            resolve({message: "Logout successfully"});
+          }).catch((error) => {
+            reject({message: error.errorCode});
+          });
     })
 }

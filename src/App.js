@@ -20,8 +20,8 @@ function App() {
           <Alert/>
           <Routes>
             <Route path='/*' element={<UserRoutes />} />
-              <Route path='/admin/*' element={<AdminRoutes />} />
             <Route element={<PrivateRoute />}>
+              <Route path='/admin/*' element={<AdminRoutes />} />
             </Route>
           </Routes>
         </PersistGate>
