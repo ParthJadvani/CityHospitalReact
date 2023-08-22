@@ -10,7 +10,7 @@ const initState = {
 export const fetchDepartments = createAsyncThunk(
     'department/fetch',
     async () => {
-        await new Promise((res, rej) => setTimeout(res, 2000));
+        // await new Promise((res, rej) => setTimeout(res, 2000));
 
         let response = await getDepartmentApiData();
         return response.data;

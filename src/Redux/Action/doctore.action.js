@@ -24,13 +24,11 @@ export const getDoctordata = () => (dispatch) => {
     // }
 
     try {
-        dispatch(loadingDoctor(true));
-
-        setTimeout(function () {
+        // dispatch(loadingDoctor(true));
             getDocotorApiData()
                 .then((response) => dispatch({ type: ActionType.GET_DOCTOR, payload: response.data }))
                 .catch((error) => console.log(error))
-        }, 3000)
+        
     } catch (error) {
         // console.log(error);
         dispatch(errorHandle(error))

@@ -61,26 +61,20 @@ export default function AddDoctor() {
 
   return (
     <>
-      {
-        dData.loading ? <CircularProgress color="secondary" /> 
-        :<>
-            <AddDocForm onhandleSubmit={handleSubmit} onUpdate={Update} />
-            <div style={{ height: 470, width: '100%' }}>
-              <DataGrid
-                rows={dData.doctor}
-                columns={columns}
-                initialState={{
-                  pagination: {
-                    paginationModel: { page: 0, pageSize: 7 },
-                  },
-                }}
-                pageSizeOptions={[50, 100]}
-                checkboxSelection
-              />
-            </div>
-          </>
-      }
-
+      <AddDocForm onhandleSubmit={handleSubmit} onUpdate={Update} />
+      <div style={{ height: 470, width: '100%' }}>
+        <DataGrid
+          rows={dData.doctor}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 7 },
+            },
+          }}
+          pageSizeOptions={[50, 100]}
+          checkboxSelection
+        />
+      </div>
     </>
   );
 }

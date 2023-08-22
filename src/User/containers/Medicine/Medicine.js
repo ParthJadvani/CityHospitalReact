@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import ListMedicine from './ListMedicine';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMedicine } from '../../../Redux/Action/medicine.action';
-// import { addToCart } from '../../../Redux/Action/cart.action';
+import { addToCart } from '../../../Redux/Action/cart.action';
 import { addToFav } from '../../../Redux/Action/fav.action';
-import { addToCart } from '../../../Redux/Slice/cartSlice';
+// import { addToCart } from '../../../Redux/Slice/cartSlice';
 
 
 function Medicine(props) {

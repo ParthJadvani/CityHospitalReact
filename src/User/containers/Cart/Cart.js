@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { decCart, incCart, removeCart } from '../../../Redux/Action/cart.action';
-import { decQty, incqQty, removeItem } from '../../../Redux/Slice/cartSlice';
+// import { decQty, incqQty, removeItem } from '../../../Redux/Slice/cartSlice';
 
 function Cart(props) {
 
@@ -29,17 +29,17 @@ function Cart(props) {
 
     const handleInc = (id) => {
         // console.log(id);
-        dispatch(incqQty(id));
+        dispatch(incCart(id));
     }
 
     const handleDec = (id) => {
         // console.log(id);
-        dispatch(decQty(id));
+        dispatch(decCart(id));
     }
 
     const handleDelCart = (id) => {
         console.log(id);
-        dispatch(removeItem(id));
+        dispatch(removeCart(id));
     }
 
     console.log(cartItems);
