@@ -25,6 +25,7 @@ import Favourite from '../User/containers/Favourite/Favourite';
 import Counter12 from '../User/containers/Counter/Counter12';
 import MemoCounter from '../User/containers/MemoCounter';
 import Callbackexample from '../User/containers/Callbackexample';
+import Userefexample from '../User/containers/Userefexample';
 
 
 function UserRoutes(props) {
@@ -42,6 +43,7 @@ function UserRoutes(props) {
                 <Route path='/Fullform' element={<FullForm />} />
                 <Route path='/Mcounter' element={<MemoCounter />} />
                 <Route path='/CallBack' element={<Callbackexample />} />
+                <Route path='/Useref' element={<Userefexample />} />
                 
                 <Route path='/Counter' element={<Counter />} />
                 <Route path='/cart' element={<Cart />} />

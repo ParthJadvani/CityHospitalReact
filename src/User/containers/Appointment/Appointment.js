@@ -11,7 +11,6 @@ import InventoryOutlinedIcon from '@mui/icons-material/InventoryOutlined';
 import EditIcon from '@mui/icons-material/EditOutlined';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import IconButton from '@mui/material/IconButton';
-
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -106,7 +105,7 @@ function Appointment(props) {
             prec: ''
         },
         onSubmit: (values, action) => {
-            console.log(values);
+            // console.log(values);
             setValue(1);
 
             if (update) {
@@ -260,7 +259,6 @@ function Appointment(props) {
                             <div className="error-message" />
                             <div className="sent-message">Your appointment request has been sent successfully. Thank you!</div>
                         </div>
-                        {/* <div className="text-center"><CustomButton val={'Make an Appointment'} /></div> */}
                         <div className="text-center"><button type="submit">Make an Appointment</button></div>
                     </form>
                 }

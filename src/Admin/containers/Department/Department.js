@@ -21,7 +21,7 @@ export default function Department() {
   }, []);
 
   const handleSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     if (Update) {
       dispatch(editDepartment(data));
     } else {
@@ -35,13 +35,14 @@ export default function Department() {
   }
 
   const handleUpdate = (data) => {
-    console.log(data);
+    // console.log(data);
     setUpdate(data);
   }
 
   const columns = [
     { field: 'name', headerName: 'Department Name', width: 200 },
     { field: 'desc', headerName: 'Discription', width: 400 },
+    { field: 'presName', headerName: 'Department Image', width: 200 },
     {
       field: 'Action',
       headerName: 'Action',
@@ -51,7 +52,7 @@ export default function Department() {
           <IconButton aria-label="delete" onClick={() => handleUpdate(params.row)}>
             <EditIcon />
           </IconButton>
-          <IconButton aria-label="delete" onClick={() => handleDelete(params.row.id)}>
+          <IconButton aria-label="delete" onClick={() => handleDelete(params.row)}>
             <DeleteIcon />
           </IconButton>
         </>
@@ -65,22 +66,21 @@ export default function Department() {
           : department.error ? <p>{department.error}</p> :
           <>
             <DepartmentForm onhandleSubmit={handleSubmit} onUpdate={Update} />
-            <div style={{ height: '100%', width: '100%' }}>
+            <div style={{ height: '90%', width: '100%' }}>
               <DataGrid
                 rows={department.department}
                 columns={columns}
                 initialState={{
                   pagination: {
-                    paginationModel: { page: 0, pageSize: 5 },
+                    paginationModel: { page: 0, pageSize: 6 },
                   },
                 }}
-                pageSizeOptions={[5, 10]}
+                pageSizeOptions={[20, 50]}
                 checkboxSelection
               />
             </div>
           </>
       }
-
     </>
   );
 }

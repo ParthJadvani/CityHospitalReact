@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import AddMediForm from './AddMediForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMedicinedata, delMedicinedata, getMedicine, updateMedicinedata } from '../../../Redux/Action/medicine.action';
+import { addMedicine, fetchMedicine } from '../../../Redux/Slice/medicineSlice';
 
 export default function AddMedi() {
   // const [locData, setlocData] = React.useState([]);
@@ -16,7 +17,7 @@ export default function AddMedi() {
   // console.log(mdata);
 
   React.useEffect(() => {
-    dispatch(getMedicine());
+    dispatch(fetchMedicine());
   }, []);
 
   const handleSubmitdata = (data) => {
@@ -24,7 +25,7 @@ export default function AddMedi() {
     if (Update) {
       dispatch(updateMedicinedata(data));
     } else {
-      dispatch(addMedicinedata(data));
+      dispatch(addMedicine(data));
     }
   }
 
@@ -96,7 +97,7 @@ export default function AddMedi() {
       width: 130,
       renderCell: (params) => (
         <>
-          <IconButton aria-label="delete" onClick={() => handleEdit(params.row)}>
+          <IconButton aria-label="edit" onClick={() => handleEdit(params.row)}>
             <EditIcon />
           </IconButton>
           <IconButton aria-label="delete" onClick={() => handleDelete(params.row.id)}>

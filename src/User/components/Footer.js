@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Link from './UI/LinkTag/Link';
+import { ThemeContext } from '../../Context/ThemeContext';
 
 function Footer(props) {
+    let theme = useContext(ThemeContext);
     return (
-        <footer id="footer">
+        <footer id="footer" className={`${theme.theme}`}>
             <div className="container d-md-flex py-4">
                 <div className="me-md-auto text-center text-md-start">
                     <div>

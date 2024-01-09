@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-export default function DepartmentForm({onhandleSubmit, onUpdate}) {
+export default function DepartmentForm({ onhandleSubmit, onUpdate }) {
     const [open, setOpen] = React.useState(false);
 
     React.useEffect(() => {
@@ -17,8 +17,8 @@ export default function DepartmentForm({onhandleSubmit, onUpdate}) {
             setValues(onUpdate);
             handleClickOpen();
         }
-        
-    } ,[onUpdate]);
+
+    }, [onUpdate]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -31,23 +31,25 @@ export default function DepartmentForm({onhandleSubmit, onUpdate}) {
     let departmentSchema = Yup.object({
         name: Yup.string().required(),
         desc: Yup.string().required(),
-      });
+        prec: Yup.mixed().required("Please Upload File")
+    });
 
     const formik = useFormik({
         validationSchema: departmentSchema,
         initialValues: {
-          name: '',
-          desc: ''
+            name: '',
+            desc: '',
+            prec: ''
         },
         onSubmit: (values, action) => {
-        //   alert(JSON.stringify(values, null, 2));
-          onhandleSubmit(values);
-          action.resetForm();
-          handleClose();
+            //   alert(JSON.stringify(values, null, 2));
+            onhandleSubmit(values);
+            action.resetForm();
+            handleClose();
         },
-      });
+    });
 
-    const { values, touched, handleBlur, handleChange, handleSubmit, errors, setValues} = formik;
+    const { values, touched, handleBlur, handleChange, handleSubmit, errors, setValues, setFieldValue } = formik;
 
     return (
         <div>
@@ -84,6 +86,18 @@ export default function DepartmentForm({onhandleSubmit, onUpdate}) {
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
+                        <TextField
+                            margin="dense"
+                            id="prec"
+                            name="prec"
+                            label="Upload File"
+                            type="file"
+                            fullWidth
+                            variant="standard"
+                            // value={values.desc}
+                            onChange={(event) => setFieldValue("prec", event.target.files[0])}
+                        />
+                        {/* <img src={typeof values.prec === "string" ? values.prec : URL.createObjectURL(values.prec)} style={{ height: "50px", width: "50px" }} /> */}
                         <DialogActions>
                             <Button onClick={handleClose}>Cancel</Button>
                             <Button type='submit'>Submit</Button>

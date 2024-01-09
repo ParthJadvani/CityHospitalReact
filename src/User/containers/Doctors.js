@@ -4,6 +4,7 @@ import Heading from '../components/UI/Heading/Heading';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDoctordata } from '../../Redux/Action/doctore.action';
 import { CircularProgress } from '@mui/material';
+import { getDoctor } from '../../Redux/Slice/doctorSlice';
 
 // const data = [
 //     {
@@ -43,7 +44,7 @@ function Doctors(props) {
     // console.log(dData.doctor);
 
     React.useEffect(() => {
-        dispDoctor(getDoctordata());
+        dispDoctor(getDoctor());
     }, []);
 
 
@@ -61,14 +62,14 @@ function Doctors(props) {
                     {
                         dData.doctor.map((v, i) => {
                             return (
-                                <div className="col-lg-6">
+                                <div className="col-lg-6 g-3">
                                     <Link to={`/Doctordescrip/${v.id}`}>
                                         <div className="member d-flex align-items-start">
-                                            <div className="pic"><img src={v.url} className="img-doctor" alt /></div>
+                                            <div className="pic"><img src={v.prec} className="img-doctor" alt /></div>
                                             <div className="member-info">
                                                 <h4>{v.name}</h4>
                                                 <span>{v.designation}</span>
-                                                <p>{v.description}</p>
+                                                <p>{v.discription}</p>
                                                 <div className="social">
                                                     <a href><i className="ri-twitter-fill" /></a>
                                                     <a href><i className="ri-facebook-fill" /></a>

@@ -33,9 +33,6 @@ export const getDoctordata = () => (dispatch) => {
         // console.log(error);
         dispatch(errorHandle(error))
     }
-
-
-
 }
 
 export const addDoctordata = (data) => (dispatch) => {

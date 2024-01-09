@@ -1,47 +1,49 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Heading from '../components/UI/Heading/Heading';
+import { ThemeContext } from '../../Context/ThemeContext';
 
 function Home(props) {
+    let theme = useContext(ThemeContext);
     return (
         <>
-            <section id="hero" className="d-flex align-items-center">
+            <section id="hero" className={`${theme.theme} d-flex align-items-center`}>
                 <div className="container">
                     {/* <h1>Welcome to City <br />Multispeciality Hospital</h1> */}
-                    <Heading type='h1'>Welcome to City <br />Multispeciality Hospital</Heading>
+                    <h2>Welcome to City <br />Multispeciality Hospital</h2>
                     <h2>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h2>
                 </div>
             </section>
-            <main id="main">
+            <main id="main" className={`${theme.theme}`}>
                 <section id="why-us" className="why-us">
                 </section>
-                <section id="counts" className="counts">
+                <section id="counts" className={`${theme.theme} counts`}>
                     <div className="container">
                         <div className="row">
-                            <div className="col-lg-3 col-md-6">
-                                <div className="count-box">
+                            <div className={`${theme.theme} col-lg-3 col-md-6`}>
+                                <div className={`${theme.theme} count-box`}>
                                     <i className="fas fa-user-md" />
-                                    <span>23</span>
+                                    <span className={`${theme.theme}`}>23</span>
                                     <p>Doctors</p>
                                 </div>
                             </div>
-                            <div className="col-lg-3 col-md-6 mt-5 mt-md-0">
-                                <div className="count-box">
+                            <div className={`${theme.theme} col-lg-3 col-md-6 mt-5 mt-md-0`}>
+                                <div className={`${theme.theme} count-box`}>
                                     <i className="far fa-hospital" />
-                                    <span>18</span>
+                                    <span className={`${theme.theme}`}>18</span>
                                     <p>Departments</p>
                                 </div>
                             </div>
-                            <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                                <div className="count-box">
+                            <div className={`${theme.theme} col-lg-3 col-md-6 mt-5 mt-lg-0`}>
+                                <div className={`${theme.theme} count-box`}>
                                     <i className="fas fa-heartbeat" />
-                                    <span>980</span>
+                                    <span className={`${theme.theme}`}>980</span>
                                     <p>Patients</p>
                                 </div>
                             </div>
-                            <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                                <div className="count-box">
+                            <div className={`${theme.theme} col-lg-3 col-md-6 mt-5 mt-lg-0`}>
+                                <div className={`${theme.theme} count-box`}>
                                     <i className="fas fa-award" />
-                                    <span>12</span>
+                                    <span className={`${theme.theme}`}>12</span>
                                     <p>Awards</p>
                                 </div>
                             </div>
@@ -51,7 +53,7 @@ function Home(props) {
                 <section id="services" className="services">
                     <div className="container">
                         <div className="section-title">
-                            <Heading type='h2'>Our Facilities</Heading>
+                            <h2 className={`${theme.theme}`}>Our Facilities</h2>
                             
                             <p>Nunc aliquam eget nibh eu euismod. Donec dapibus blandit quam volutpat sollicitudin. Fusce tincidunt sit
                                 amet ex in volutpat. Donec lacinia finibus tortor. Curabitur luctus eleifend odio. Phasellus placerat mi et
@@ -68,7 +70,7 @@ function Home(props) {
                             <div className="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
                                 <div className="icon-box">
                                     <div className="icon"><i className="fas fa-bed" /></div>
-                                    <h4><a href>40+ Bed Facilities</a></h4>
+                                    <h4><a href >40+ Bed Facilities</a></h4>
                                     <p>Pellentesque id felis elit. Pellentesque blandit sem a nisi dictum</p>
                                 </div>
                             </div>
@@ -105,14 +107,14 @@ function Home(props) {
                 </section>
                 <section id="testimonials" className="testimonials">
                     <div className="container">
-                        <div className="section-title"><Heading type='h2'>Reviews</Heading></div>
-                        <div className="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay={100}>
-                            <div className="swiper-wrapper">
-                                <div className="swiper-slide">
-                                    <div className="testimonial-wrap">
-                                        <div className="testimonial-item">
+                        <div className="section-title"><h2 className={`${theme.theme}`}>Reviews</h2></div>
+                        <div className={` testimonials-slider swiper-container`} data-aos="fade-up" data-aos-delay={100}>
+                            <div className={` swiper-wrapper`}>
+                                <div className={` swiper-slide`}>
+                                    <div className={` testimonial-wrap`}>
+                                        <div className={`${theme.theme} testimonial-item`}>
                                             <img src="assets/img/testimonials/testimonials-1.jpg" className="testimonial-img" alt />
-                                            <h3>Jacob Wilsson</h3>
+                                            <h3 className={`${theme.theme}`}>Jacob Wilsson</h3>
                                             <h4>Writer</h4>
                                             <p>
                                                 <i className="bx bxs-quote-alt-left quote-icon-left" />
@@ -127,9 +129,9 @@ function Home(props) {
                                 </div>
                                 <div className="swiper-slide">
                                     <div className="testimonial-wrap">
-                                        <div className="testimonial-item">
+                                        <div className={`${theme.theme} testimonial-item`}>
                                             <img src="assets/img/testimonials/testimonials-2.jpg" className="testimonial-img" alt />
-                                            <h3>Ava Smith</h3>
+                                            <h3 className={`${theme.theme}`}>Ava Smith</h3>
                                             <h4>Artist</h4>
                                             <p>
                                                 <i className="bx bxs-quote-alt-left quote-icon-left" />
@@ -143,9 +145,9 @@ function Home(props) {
                                 </div>
                                 <div className="swiper-slide">
                                     <div className="testimonial-wrap">
-                                        <div className="testimonial-item">
+                                        <div className={`${theme.theme} testimonial-item`}>
                                             <img src="assets/img/testimonials/testimonials-3.jpg" className="testimonial-img" alt />
-                                            <h3>Abigail Martin</h3>
+                                            <h3 className={`${theme.theme}`}>Abigail Martin</h3>
                                             <h4>Teacher</h4>
                                             <p>
                                                 <i className="bx bxs-quote-alt-left quote-icon-left" />
@@ -159,10 +161,10 @@ function Home(props) {
                                     </div>
                                 </div>
                                 <div className="swiper-slide">
-                                    <div className="testimonial-wrap">
+                                    <div className={`${theme.theme} testimonial-wrap`}>
                                         <div className="testimonial-item">
                                             <img src="assets/img/testimonials/testimonials-4.jpg" className="testimonial-img" alt />
-                                            <h3>Alexander Tremblay</h3>
+                                            <h3 className={`${theme.theme}`}>Alexander Tremblay</h3>
                                             <h4>Designer</h4>
                                             <p>
                                                 <i className="bx bxs-quote-alt-left quote-icon-left" />
@@ -176,9 +178,9 @@ function Home(props) {
                                 </div>
                                 <div className="swiper-slide">
                                     <div className="testimonial-wrap">
-                                        <div className="testimonial-item">
+                                        <div className={`${theme.theme} testimonial-item`}>
                                             <img src="assets/img/testimonials/testimonials-5.jpg" className="testimonial-img" alt />
-                                            <h3>Jayden Brown</h3>
+                                            <h3 className={`${theme.theme}`}>Jayden Brown</h3>
                                             <h4>Entrepreneur</h4>
                                             <p>
                                                 <i className="bx bxs-quote-alt-left quote-icon-left" />
@@ -197,7 +199,7 @@ function Home(props) {
                 <section id="gallery" className="gallery">
                     <div className="container">
                         <div className="section-title">
-                            <Heading type='h2'>Gallery</Heading>
+                            <h2 className={`${theme.theme}`}>Gallery</h2>
                             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
                                 consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
                                 in iste officiis commodi quidem hic quas.</p>

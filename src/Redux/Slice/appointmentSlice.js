@@ -76,7 +76,7 @@ export const deleteApt = createAsyncThunk(
             // console.log(data);
             await deleteObject(desertRef).then(async () => {
                 await deleteDoc(doc(db, "appointment", data.id));
-                console.log("file deleted success");
+                // console.log("file deleted success");
             })
         } catch (e) {
             console.error("Error adding document: ", e);
@@ -162,6 +162,7 @@ export const appointmentSlice = createSlice({
                 // console.log(action.payload);
                 state.apt = state.apt.concat(action.payload);
             })
+            .addCase(aptAdd.rejected, rejected)
             .addCase(getApt.fulfilled, (state, action) => {
                 state.isLoading = false;
                 // console.log(action);
