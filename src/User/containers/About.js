@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Heading from '../components/UI/Heading/Heading';
+import { ThemeContext } from '../../Context/ThemeContext';
 
 function About(props) {
+    let theme = useContext(ThemeContext);
     return (
-        <section id="about" className="about">
+        <section id="about" className={`${theme.theme} about`}>
             <div className="container">
                 <div className="row">
                     <div className="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center px-lg-5 abouttop">
-                        <Heading type='h3'>Fusce nec risus at enim congue bibendum quis at augue. </Heading>
+                        <h3 className={`${theme.theme}`}>Fusce nec risus at enim congue bibendum quis at augue. </h3>
                         <p>Proin tincidunt blandit fermentum. Ut gravida arcu non mi dapibus ullamcorper. Curabitur mollis, turpis eu
                             pellentesque finibus, nisi ex mattis quam, mollis aliquet mi massa non nunc. Pellentesque id felis elit.
                             Pellentesque blandit sem a nisi dictum, in pretium ante tincidunt.</p>

@@ -14,13 +14,14 @@ export const cartReducer = (state = iniState, action) => {
             let item = state.items.some((v) => v.pid === action.payload.pid);
             console.log(item);
 
-            if (item) {
-                let index = state.items.findIndex((v) => v.pid === action.payload.pid);
-                state.items[index].qty++;
-            } else {
-                state.items.push(action.payload);
-            }
-            // console.log(state);
+            // if (item) {
+            //     let index = state.items.findIndex((v) => v.pid === action.payload.pid);
+            //     state.items[index].qty++;
+            // } else {
+            //     state.items.push(action.payload);
+            // }
+            console.log(state.items);
+            console.log(action.payload.pid);
             // console.log(item);
 
             return {

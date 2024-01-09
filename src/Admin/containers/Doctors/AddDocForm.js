@@ -32,6 +32,7 @@ function AddDocForm({ onhandleSubmit, onUpdate }) {
         name: Yup.string().required('Enter doctor name'),
         designation: Yup.string().required('Please enter designation'),
         discription: Yup.string().required('Please enter discription'),
+        prec: Yup.mixed().required("Please Upload File")
     });
 
     const formik = useFormik({
@@ -40,6 +41,7 @@ function AddDocForm({ onhandleSubmit, onUpdate }) {
             name: '',
             designation: '',
             discription: '',
+            prec: ''
         },
         onSubmit:(values, action) => {
             // alert(JSON.stringify(values, null, 2));
@@ -49,8 +51,8 @@ function AddDocForm({ onhandleSubmit, onUpdate }) {
         },
     });
 
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit, setValues } = formik;
-    console.log(errors);
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit, setValues, setFieldValue } = formik;
+    // console.log(errors);
 
 
     return (
@@ -106,6 +108,19 @@ function AddDocForm({ onhandleSubmit, onUpdate }) {
                             onChange={handleChange}
                             onBlur={handleBlur}
                             helperText={errors.discription && touched.discription ? errors.discription : ''}
+                            error={errors.discription && touched.discription ? errors.discription : ''}
+                        />
+                        <TextField
+                            margin="dense"
+                            id="prec"
+                            name='prec'
+                            label="Upload File"
+                            type="file"
+                            fullWidth
+                            variant="standard"
+                            // value={values.discription}
+                            onChange={(event) => setFieldValue("prec", event.target.files[0])}
+                            // helperText={errors.discription && touched.discription ? errors.discription : ''}
                             error={errors.discription && touched.discription ? errors.discription : ''}
                         />
                     </DialogContent>

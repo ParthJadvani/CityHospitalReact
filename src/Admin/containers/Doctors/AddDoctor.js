@@ -7,6 +7,7 @@ import EditIcon from '@mui/icons-material/EditOutlined';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import IconButton from '@mui/material/IconButton';
 import CircularProgress from '@mui/material/CircularProgress';
+import { addDoctor, editDoctor, getDoctor, removeDoctor } from '../../../Redux/Slice/doctorSlice';
 
 export default function AddDoctor() {
   const [Update, setUpdate] = React.useState(null);
@@ -16,15 +17,15 @@ export default function AddDoctor() {
   console.log(dData);
 
   React.useEffect(() => {
-    dispDoctor(getDoctordata());
+    dispDoctor(getDoctor());
   }, []);
 
   const handleSubmit = (data) => {
     // console.log(data);
     if (Update) {
-      dispDoctor(updateDoctordata(data));
+      dispDoctor(editDoctor(data));
     } else {
-      dispDoctor(addDoctordata(data));
+      dispDoctor(addDoctor(data));
     }
   }
 
@@ -32,15 +33,15 @@ export default function AddDoctor() {
     setUpdate(data);
   }
 
-  const handleDelete = (id) => {
-    console.log(id);
-    dispDoctor(delDoctordata(id));
+  const handleDelete = (data) => {
+    console.log(data);
+    dispDoctor(removeDoctor(data));
   }
 
   const columns = [
     { field: 'name', headerName: 'Doctor', width: 130 },
     { field: 'designation', headerName: 'Designation', width: 130 },
-    { field: 'discription', headerName: 'Discription', width: 130 },
+    { field: 'discription', headerName: 'Discription', width: 400 },
     {
       field: 'action',
       headerName: 'Action',
@@ -51,7 +52,7 @@ export default function AddDoctor() {
           <IconButton aria-label="delete" onClick={() => handleEdit(params.row)}>
             <EditIcon />
           </IconButton>
-          <IconButton aria-label="delete" onClick={() => handleDelete(params.row.id)}>
+          <IconButton aria-label="delete" onClick={() => handleDelete(params.row)}>
             <DeleteIcon />
           </IconButton>
         </>
@@ -61,26 +62,20 @@ export default function AddDoctor() {
 
   return (
     <>
-      {
-        dData.loading ? <CircularProgress color="secondary" /> 
-        :<>
-            <AddDocForm onhandleSubmit={handleSubmit} onUpdate={Update} />
-            <div style={{ height: 470, width: '100%' }}>
-              <DataGrid
-                rows={dData.doctor}
-                columns={columns}
-                initialState={{
-                  pagination: {
-                    paginationModel: { page: 0, pageSize: 7 },
-                  },
-                }}
-                pageSizeOptions={[50, 100]}
-                checkboxSelection
-              />
-            </div>
-          </>
-      }
-
+      <AddDocForm onhandleSubmit={handleSubmit} onUpdate={Update} />
+      <div style={{ height: 470, width: '100%' }}>
+        <DataGrid
+          rows={dData.doctor}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 7 },
+            },
+          }}
+          pageSizeOptions={[50, 100]}
+          checkboxSelection
+        />
+      </div>
     </>
   );
 }

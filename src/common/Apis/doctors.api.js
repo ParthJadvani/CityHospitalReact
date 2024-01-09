@@ -13,5 +13,5 @@ export const deleteDocotorApiData = (id) => {
 }
 
 export const updateDocotorApiData = (data) => {
-    return putRequest('doctors/' + data.id , data)
+    return putRequest('doctors/' + data.id, data)
 }

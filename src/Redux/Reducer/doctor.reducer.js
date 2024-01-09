@@ -7,7 +7,6 @@ const initState = {
 }
 
 export const fackDoctordata = (state = initState, action) => {
-    console.log(action);
 
     switch (action.type) {
         case ActionType.LOADING_DOCTOR:

@@ -10,7 +10,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import * as Yup from 'yup';
 
 
-function AddMediForm({ onhandleSubmitdata, onUpdate}) {
+function AddMediForm({ onhandleSubmitdata, onUpdate }) {
     const [open, setOpen] = React.useState(false);
 
     useEffect(() => {
@@ -18,8 +18,8 @@ function AddMediForm({ onhandleSubmitdata, onUpdate}) {
             setValues(onUpdate);
             handleClickOpen();
         }
-        
-    } ,[onUpdate]);
+
+    }, [onUpdate]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -46,6 +46,7 @@ function AddMediForm({ onhandleSubmitdata, onUpdate}) {
                     return true
                 }
             }),
+        prec: Yup.mixed().required("Please Upload File"),
     });
 
     const formik = useFormik({
@@ -55,6 +56,7 @@ function AddMediForm({ onhandleSubmitdata, onUpdate}) {
             price: '',
             date: '',
             desc: '',
+            prec: ''
         },
         onSubmit: (values, action) => {
             onhandleSubmitdata(values);
@@ -63,7 +65,7 @@ function AddMediForm({ onhandleSubmitdata, onUpdate}) {
         },
     });
 
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit, setValues } = formik;
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit, setValues, setFieldValue } = formik;
     return (
         <>
             <Button variant="outlined" onClick={handleClickOpen}>
@@ -102,7 +104,7 @@ function AddMediForm({ onhandleSubmitdata, onUpdate}) {
                             value={values.price}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            helperText={errors.cname && touched.cname ? errors.cname : ''}
+                            helperText={errors.price && touched.price ? errors.price : ''}
                             error={errors.price && touched.price ? errors.price : ''}
                         />
                         <TextField
@@ -132,6 +134,17 @@ function AddMediForm({ onhandleSubmitdata, onUpdate}) {
                             onBlur={handleBlur}
                             helperText={errors.desc && touched.desc ? errors.desc : ''}
                             error={errors.desc && touched.desc ? errors.desc : ''}
+                        />
+                        <TextField
+                            margin="dense"
+                            id="prec"
+                            name="prec"
+                            label="Upload File"
+                            type="file"
+                            fullWidth
+                            variant="standard"
+                            // value={values.desc}
+                            onChange={(event) => setFieldValue("prec", event.target.files[0])}
                         />
                     </DialogContent>
                     <DialogActions>

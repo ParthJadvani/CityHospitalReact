@@ -3,19 +3,29 @@ import { rootReducer } from "./Reducer"
 import thunk from "redux-thunk"
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for we
+import createSagaMiddleware from 'redux-saga'
+import { rootsaga } from "./Saga/rootSaga"
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['medicine', 'cart']
+    whitelist: ['', 'cart', 'auth']
   }
   
   const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const configStore = () => {
-    let store = createStore(persistedReducer, applyMiddleware(thunk));
+  const sagaMiddleware = createSagaMiddleware()
 
-    let persistor = persistStore(store)
+  const middlewares = [thunk, sagaMiddleware]
 
-    return {store, persistor};
+const configStore = () => {
+    let store = createStore(persistedReducer, applyMiddleware(...middlewares));
+
+    sagaMiddleware.run(rootsaga);
+
+    return store;
 }
+
+export let store = configStore();
+export let persistor = persistStore(store)
+

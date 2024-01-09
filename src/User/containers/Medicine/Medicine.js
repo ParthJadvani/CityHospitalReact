@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getMedicine } from '../../../Redux/Action/medicine.action';
 import { addToCart } from '../../../Redux/Action/cart.action';
 import { addToFav } from '../../../Redux/Action/fav.action';
+// import { addToCart } from '../../../Redux/Slice/cartSlice';
 
 
 function Medicine(props) {
@@ -43,7 +44,7 @@ function Medicine(props) {
     }
 
     const handleCart = (id) => {
-        dispatch(addToCart(id));
+        dispatch(addToCart({pid: id, qty: 1}));
         console.log("call cart", id);
     }
 

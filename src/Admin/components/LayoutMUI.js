@@ -105,7 +105,7 @@ export default function LayoutMUI({ children }) {
     { lable: 'Add Doctor', icon: <Doctor />, to: '/admin/doctor' },
     { lable: 'Add Medicine', icon: <Medicine />, to: '/admin/medicine' },
     { lable: 'Appointment', icon: <Appointment />, to: '/admin/appointment' },
-    { lable: 'Departments', icon: <Department />, to: '' },
+    { lable: 'Departments', icon: <Department />, to: '/admin/department' },
   ]
 
   return (

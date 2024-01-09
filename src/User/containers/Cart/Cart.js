@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { decCart, incCart, removeCart } from '../../../Redux/Action/cart.action';
+// import { decQty, incqQty, removeItem } from '../../../Redux/Slice/cartSlice';
 
 function Cart(props) {
 

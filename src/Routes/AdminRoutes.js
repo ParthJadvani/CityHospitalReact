@@ -7,6 +7,7 @@ import Dashboard from '../Admin/containers/Dashboard';
 import AddDoctor from '../Admin/containers/Doctors/AddDoctor';
 import { Provider } from 'react-redux';
 import { doctorStore } from '../Redux/Store';
+import Department from '../Admin/containers/Department/Department';
 
 function AdminRoutes(props) {
     // const store = doctorStore();
@@ -18,6 +19,7 @@ function AdminRoutes(props) {
                     <Route path='/doctor' element={<AddDoctor />} />
                     <Route path='/medicine' element={<AddMedicine />} />
                     <Route path='/appointment' element={<AddAppointment />} />
+                    <Route path='/department' element={<Department />} />
                 </Routes>
             {/* </Provider> */}
         </LayoutMUI>

@@ -6,7 +6,6 @@ export const getMedicine = () => (dispatch) => {
         .then((response) => response.json())
         .then((data) => dispatch({type: ActionType.GET_MEDICINE, payload: data}))
         .catch((error) => console.log(error))
-
     } catch(error) {
         console.log(error);
     }
