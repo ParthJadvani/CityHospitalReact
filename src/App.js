@@ -1,48 +1,26 @@
-import logo from './logo.svg';
 import { Route, Routes, } from "react-router-dom";
-
 import './App.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Home from './containers/Home';
-import Departments from './containers/Departments';
-import Doctors from './containers/Doctors';
-import About from './containers/About';
-import Contact from './containers/Contact';
-import Appointment from './containers/Appointment';
-import Docdescription from './containers/Docdescription';
-import VisitingDoctor from './containers/VisitingDoctor';
-import NotFound from './components/NotFound';
-import Auth from './containers/Auth';
-import Auth1 from './containers/Auth1';
-import Contact1 from './containers/Contact1';
+import UserRoutes from './Routes/UserRoutes';
+import AdminRoutes from './Routes/AdminRoutes';
+import PrivateRoute from "./User/containers/PrivateRoute";
+import { Provider } from "react-redux";
+import { configStore } from "./Redux/Store";
+import { PersistGate } from 'redux-persist/integration/react'
 
 function App() {
+  const {store, persistor} = configStore();
   return (
-    <>
-      <Header />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/Departments' element={<Departments />} />
-        <Route path='/Doctors' element={<Doctors />} />
-        <Route path='/About' element={<About />} />
-        {/* <Route path='/Contact' element={<Contact />} /> */}
-        <Route path='/Contact' element={<Contact1 />} />
-        <Route path='/Appointment' element={<Appointment />} />
-        {/* <Route path='/Doctordescrip/:id' element={<Docdescription/>}/>      
-        <Route path='/Doctordescrip/Visiting' element={<VisitingDoctor/>}/>       */}
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Routes>
+          <Route path='/*' element={<UserRoutes />} />
 
-        <Route path='/Doctordescrip/'>
-          <Route path=':id' element={<Docdescription />} />
-          <Route path='Visiting' element={<VisitingDoctor />} />
-        </Route>
-
-        <Route path='*' element={<NotFound />} />
-        {/* <Route path='/Auth' element={<Auth />} /> */}
-        <Route path='/Auth1' element={<Auth1 />} />
-      </Routes>
-      <Footer />
-    </>
+          <Route element={<PrivateRoute />}>
+            <Route path='/admin/*' element={<AdminRoutes />} />
+          </Route>
+        </Routes>
+      </PersistGate>
+    </Provider>
   );
 }
 
